@@ -16,7 +16,10 @@ namespace PlayerScripts
         [SerializeField] public Rigidbody rb;
         [SerializeField] public float speedMultiplier = 10f;
         [SerializeField] public float rbDrag = 8f;
-        Transform cam;
+        [SerializeField] Transform cam;
+
+        Animator anim;
+        string paramSpeed = "Velocity";
 
         public float turnSmoothTime = 0.1f;
         float turnSmoothVelocity;
@@ -29,7 +32,7 @@ namespace PlayerScripts
         {
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
-            cam = Camera.main.transform;
+            anim = GetComponentInChildren<Animator>();
         }
 
         void Update() =>
@@ -54,10 +57,14 @@ namespace PlayerScripts
             {
                 float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)*Vector3.forward;
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                transform.position += movement * playerSpeed*speedMultiplier* Time.deltaTime;
+                transform.position += moveDir.normalized* playerSpeed*speedMultiplier* Time.deltaTime;
             }
+
+            anim.SetFloat(paramSpeed, movement.magnitude);
         }
     }
 }
