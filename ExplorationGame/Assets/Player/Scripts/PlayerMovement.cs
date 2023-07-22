@@ -20,12 +20,22 @@ namespace PlayerScripts
 
         Animator anim;
         string paramSpeed = "Velocity";
+        string paramJumpTrigger = "Jump";
 
         public float turnSmoothTime = 0.1f;
         float turnSmoothVelocity;
         public void ReceiveInput(Vector2 moveInput)
         {
-            _horizontalInput = moveInput;
+            _horizontalInput = moveInput;          
+        }
+
+        public void ReceiveJumpInput()
+        {
+            if (isGrounded)
+            {
+                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+                anim.SetTrigger(paramJumpTrigger);
+            }
         }
         // Start is called before the first frame update
         public void Start()

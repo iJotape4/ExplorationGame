@@ -21,6 +21,7 @@ namespace PlayerScripts
 
             //SUSCRIBE INPUT ACTIONS
             onFootActions.Move.performed += ctx => movement.ReceiveInput(ctx.ReadValue<Vector2>());
+            onFootActions.Jump.performed += ctx => movement.ReceiveJumpInput();
         }
 
         private void OnEnable()=> controls.Enable();
