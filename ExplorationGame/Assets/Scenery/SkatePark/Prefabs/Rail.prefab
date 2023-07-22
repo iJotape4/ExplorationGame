@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9061588145311205406}
   - component: {fileID: 756617548021036687}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: RailCollider
-  m_TagString: Untagged
+  m_TagString: Rail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0905967, y: 0.47176927, z: 5.007699}
-  m_Center: {x: 0.04532772, y: -0.2641153, z: 0.007842302}
+  m_Size: {x: 1.0905967, y: 0.47176927, z: 6.4}
+  m_Center: {x: 0.04532772, y: -0.2641153, z: 0}
 --- !u!1 &5834745754631835927
 GameObject:
   m_ObjectHideFlags: 0
