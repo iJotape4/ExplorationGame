@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 namespace PlayerScripts
 {
@@ -33,10 +34,16 @@ namespace PlayerScripts
         {
             if (isGrounded)
             {
-                rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
                 anim.SetTrigger(paramJumpTrigger);
+                StartCoroutine(AddJumpForce());
             }
         }
+
+        public IEnumerator AddJumpForce()
+        {
+            yield return new WaitForSeconds(0.5f);
+            rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        } 
         // Start is called before the first frame update
         public void Start()
         {
@@ -58,10 +65,13 @@ namespace PlayerScripts
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
 
+            if (!isGrounded)
+                return;
+
             float x = _horizontalInput.x;
             float y = _horizontalInput.y;
 
-            Vector3 movement = new Vector3(x, 0f, y).normalized;
+            Vector3 movement = new Vector3(x, 0f, y).normalized; 
 
             if (movement.magnitude >= 0.1f)
             {
