@@ -81,7 +81,9 @@ namespace PlayerScripts
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)*Vector3.forward;
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                transform.position += moveDir.normalized* playerSpeed*speedMultiplier* Time.deltaTime;
+                rb.AddForce(moveDir.normalized * playerSpeed * speedMultiplier , ForceMode.Impulse);
+            
+                //transform.position += moveDir.normalized* playerSpeed*speedMultiplier* Time.deltaTime;
             }
 
             anim.SetFloat(paramSpeed, movement.magnitude);
