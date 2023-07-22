@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -7,10 +6,12 @@ namespace PlayerScripts
     public class RailCheck : MonoBehaviour
     {
         PlayerMovement player;
+        SphereCollider bc;
 
         private void Start()
         {
             player = transform.parent.GetComponent<PlayerMovement>();
+            bc = GetComponent<SphereCollider>();
         }
         private void OnCollisionEnter(Collision collision)
         {
@@ -24,34 +25,22 @@ namespace PlayerScripts
                 Vector3 farthestPoint = min > max ? bc.bounds.min : bc.bounds.max; 
                
                 player.MoveAlongRail(farthestPoint, contactPoint);
-               // MoveTowards(collision.transform.up);
-               // StartCoroutine(MoveAlongRail(collision.transform.up));
             }
         }
 
-        public void MoveTowards(Vector3 railDirection)
+      /*  private void OnCollisionExit(Collision collision)
         {
-           // player.parent = rail;
-       
-           // BoxCollider bc = rail.GetComponent<BoxCollider>();
-            //Vector3 closestPoint = bc.ClosestPointOnBounds(transform.position);
-       
+            if (collision.gameObject.tag == "Rail")
+            {
+                StartCoroutine(DisableColliderForAWhile());
+            }
         }
 
-       /* IEnumerator MoveAlongRail(Vector3 railDirection)
+        public IEnumerator DisableColliderForAWhile()
         {
-            while ()
-            Vector3 movement = railDirection * railMoveSpeed;
-            transform.Translate(movement);
-            yield return null;
-
-            /*while(transform.position != closestPoint)
-            {
-                player.transform.position = Vector3.MoveTowards(player.transform.position, closestPoint, 0.1f);
-                yield return new WaitForSeconds(0.1f);
-            }*/
-
-            //player.parent = null;
-        //}
+            bc.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            bc.enabled = true;
+        }*/
     }
 }

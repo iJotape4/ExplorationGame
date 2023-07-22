@@ -98,10 +98,10 @@ namespace PlayerScripts
 
         public IEnumerator MoveOnRail(Vector3 destination)
         {
-            while (Vector3.Distance(transform.position, destination) >1f)
+            while (Vector3.Distance(transform.position, destination) > 1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.001f);
             }
             _onRail = false;
         }
