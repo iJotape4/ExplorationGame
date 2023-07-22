@@ -23,6 +23,7 @@ namespace PlayerScripts
         Animator anim;
         string paramSpeed = "Velocity";
         string paramJumpTrigger = "Jump";
+        string paramRailBool = "OnRail";
 
         public float turnSmoothTime = 0.1f;
         float turnSmoothVelocity;
@@ -92,18 +93,20 @@ namespace PlayerScripts
         public void MoveAlongRail(Vector3 destination,Vector3 contactPoint)
         {
             _onRail = true;
-           // transform.position = contactPoint + Vector3.up*1.5f  ;
+            anim.SetBool(paramRailBool, true);
+            // transform.position = contactPoint + Vector3.up*1.5f  ;
             StartCoroutine(MoveOnRail(destination));
         }
 
         public IEnumerator MoveOnRail(Vector3 destination)
-        {
-            while (Vector3.Distance(transform.position, destination) > 1f)
+        {         
+            while (Vector3.Distance(transform.position, destination) > 1f && _onRail)
             {
                 transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
                 yield return new WaitForSeconds(0.001f);
             }
             _onRail = false;
+            anim.SetBool(paramRailBool, false);
         }
     }
 }
