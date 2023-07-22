@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 221357324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221357323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: -0.52}
+  m_LocalPosition: {x: 0.2, y: 0, z: -8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 675293075}
   - component: {fileID: 675293074}
   - component: {fileID: 675293077}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675293072}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 11.110001, y: -37.3792, z: 25.7}
+  m_LocalPosition: {x: 11.5, y: -37.3792, z: 25.7}
   m_LocalScale: {x: 2.62682, y: 9.894999, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 732257952}
   - component: {fileID: 732257951}
   - component: {fileID: 732257953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1225547823}
   - component: {fileID: 1225547822}
   - component: {fileID: 1225547825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1314030763}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314030762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0, z: 65.24}
+  m_LocalPosition: {x: -0.02, y: 0, z: 73.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1610757152}
   - component: {fileID: 1610757151}
   - component: {fileID: 1610757153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stoneWallDamaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 4165930035232925232}
   - component: {fileID: 2176553646381110010}
   - component: {fileID: 717543091057331825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375013121037644591}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 2.9599996, y: -37.010006, z: 58.23}
+  m_LocalPosition: {x: 2.98, y: -37.010006, z: 58.23}
   m_LocalScale: {x: 7, y: 10, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717543091253887512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 3469287837934325720}
   - component: {fileID: 1711813855215647506}
   - component: {fileID: 3469287837934325721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stoneWallDamaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 3469287836945439861}
   - component: {fileID: 1711813856170846399}
   - component: {fileID: 3469287836945439862}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2252727553099823362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalPosition.x
@@ -892,7 +892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.73
+      value: 31.2
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalRotation.w
@@ -940,6 +940,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2252727553099823362}
     m_Modifications:
+    - target: {fileID: 5426294707869344911, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426294707869344911, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -954,7 +962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalPosition.x
@@ -966,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80.711
+      value: 85.6
       objectReference: {fileID: 0}
     - target: {fileID: 5878829661036369254, guid: c3e4aad022bd683428448c08bbf39544, type: 3}
       propertyPath: m_LocalRotation.w

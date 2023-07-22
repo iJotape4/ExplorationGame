@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5782074155363285950}
   - component: {fileID: 8636490692450176884}
   - component: {fileID: 6543267953987460256}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Ramp 3X '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

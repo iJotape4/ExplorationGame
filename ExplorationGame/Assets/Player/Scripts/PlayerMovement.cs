@@ -5,14 +5,15 @@ namespace PlayerScripts
     public class PlayerMovement : MonoBehaviour
     {
         [Range(0.1f, 50f)] public float playerSpeed = 10f;
-        [Range(0.1f, 50f)] public float jumpForce = 10f;
+        [Range(0.1f, 100f)] public float jumpForce = 10f;
         Vector2 _horizontalInput;
         bool _jump;
         //[HideInInspector] Vector3 mass;
         [SerializeField] Transform groundCheck;
-        [SerializeField, Range(0.1f, 1f)] float groundCheckArea = 0.3f;
+        [SerializeField] float groundCheckArea = 0.3f;
         [SerializeField] private LayerMask groundMask;
         [SerializeField] private bool isGrounded;
+        [SerializeField] private bool inRamp;
 
         [SerializeField] public Rigidbody rb;
         [SerializeField] public float speedMultiplier = 10f;
@@ -44,7 +45,6 @@ namespace PlayerScripts
             yield return new WaitForSeconds(0.5f);
             rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         } 
-        // Start is called before the first frame update
         public void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -63,10 +63,7 @@ namespace PlayerScripts
 
         void manageMovement()
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
-
-            if (!isGrounded)
-                return;
+           isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
 
             float x = _horizontalInput.x;
             float y = _horizontalInput.y;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4788133794912447968}
   - component: {fileID: 4788133794912447971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 8239261547520517495}
   - component: {fileID: 6175363011397423549}
   - component: {fileID: 2412582422623106280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 8239261546448637117}
   - component: {fileID: 6175363012473108599}
   - component: {fileID: 7778821615864381153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8239261546216475864}
   - component: {fileID: 6175363012041652242}
   - component: {fileID: 8370108415914253035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8239261546830316529}
   - component: {fileID: 6175363011512612667}
   - component: {fileID: 6731946100261476123}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brickWallCurveSmall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
