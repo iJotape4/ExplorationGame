@@ -93,12 +93,14 @@ namespace PlayerScripts
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-                rb.AddForce(moveDir.normalized * playerSpeed * speedMultiplier);
+                rb.AddForce(moveDir * playerSpeed * speedMultiplier);
+                
+                if(y>-1) //Allows stop the skateboard without rotate 
                 transform.rotation = Quaternion.Euler(transform.rotation.x, angle, transform.rotation.z);
                     
-                /*
+                
                 Debug.DrawRay(transform.position, movement, Color.green);
-                Debug.DrawRay(transform.position, moveDir, Color.yellow);*/
+                Debug.DrawRay(transform.position, moveDir, Color.yellow);
             }
 
             anim.SetFloat(paramSpeed, movement.magnitude);
