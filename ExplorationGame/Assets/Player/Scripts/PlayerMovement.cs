@@ -4,32 +4,37 @@ namespace PlayerScripts
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [Header("Player variables")]
         [Range(0.1f, 50f)] public float playerSpeed = 10f;
         [Range(0.1f, 100f)] public float jumpForce = 10f;
+        [Range(0.1f, 1f)] public float turnSmoothTime = 0.5f;
+        [SerializeField, Range(1f, 20f)] public float speedMultiplier = 10f;
+        [HideInInspector] public float rbDrag = 0f;
+        float turnSmoothVelocity;
         Vector2 _horizontalInput;
-        [SerializeField] bool _onRail;
-        //[HideInInspector] Vector3 mass;
-        [SerializeField] Transform groundCheck;
-        [SerializeField] float groundCheckArea = 0.3f;
+
+        [Header("GroundChecking")]
         [SerializeField] private LayerMask groundMask;
+        [SerializeField] float groundCheckArea = 0.3f;
+        [SerializeField] Transform groundCheck;
+        [HideInInspector] public float m_rayDistance = 5f;
+
+        [Header("Assignable components")]
+        [SerializeField] Transform cam;
+        public Transform m_skateboard;
+        [HideInInspector] public Rigidbody rb;
+
+        [Header("Booleans")]
         [SerializeField] private bool isGrounded;
         [SerializeField] private bool inRamp;
-
-        [SerializeField] public Rigidbody rb;
-        [SerializeField] public float speedMultiplier = 10f;
-        [SerializeField] public float rbDrag = 0f;
-        [SerializeField] Transform cam;
-
-        public Transform m_skateboard;
-        public float m_rayDistance = 5f;
-
+        [SerializeField] bool _onRail;
+             
+        [Header("Animation Params")]
         Animator anim;
-        string paramSpeed = "Velocity";
-        string paramJumpTrigger = "Jump";
-        string paramRailBool = "OnRail";
-
-        public float turnSmoothTime = 0.5f;
-        float turnSmoothVelocity;
+        readonly string paramSpeed = "Velocity";
+        readonly string paramJumpTrigger = "Jump";
+        readonly string paramRailBool = "OnRail";
+        
         public void ReceiveInput(Vector2 moveInput)
         {
             _horizontalInput = moveInput;
