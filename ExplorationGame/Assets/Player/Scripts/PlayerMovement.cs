@@ -17,10 +17,9 @@ namespace PlayerScripts
 
         [SerializeField] public Rigidbody rb;
         [SerializeField] public float speedMultiplier = 10f;
-        [SerializeField] public float rbDrag = 8f;
+        [SerializeField] public float rbDrag = 0f;
         [SerializeField] Transform cam;
 
-        private Vector3 m_surfaceNormal = new Vector3();
         public Transform m_skateboard;
         public float m_rayDistance = 5f;
 
@@ -74,7 +73,7 @@ namespace PlayerScripts
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
 
-            if (_onRail)
+            if (_onRail || !isGrounded)
                 return;
 
             float x = _horizontalInput.x;
@@ -88,15 +87,13 @@ namespace PlayerScripts
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-              // m_skateboard.transform.rotation = Quaternion.Euler(0f,0f, angle);
 
                 rb.AddForce(moveDir.normalized * playerSpeed * speedMultiplier);
                 transform.rotation = Quaternion.Euler(transform.rotation.x, angle, transform.rotation.z);
-
+                    
+                /*
                 Debug.DrawRay(transform.position, movement, Color.green);
-                Debug.DrawRay(transform.position, moveDir, Color.yellow);
-
-                //transform.position += moveDir.normalized* playerSpeed*speedMultiplier* Time.deltaTime;
+                Debug.DrawRay(transform.position, moveDir, Color.yellow);*/
             }
 
             anim.SetFloat(paramSpeed, movement.magnitude);
@@ -106,7 +103,6 @@ namespace PlayerScripts
         {
             _onRail = true;
             anim.SetBool(paramRailBool, true);
-            // transform.position = contactPoint + Vector3.up*1.5f  ;
             StartCoroutine(MoveOnRail(destination));
         }
 
@@ -121,16 +117,9 @@ namespace PlayerScripts
             anim.SetBool(paramRailBool, false);
         }
 
-        private void OnCollisionStay(Collision collision)
-        {
-            m_surfaceNormal = collision.GetContact(0).normal;
-            Debug.DrawRay(m_skateboard.position, m_surfaceNormal, Color.red);
-          
-        }
-
         void AlignToSurface()
         {
-            var hit = new RaycastHit();
+            RaycastHit hit;
             var onSurface = Physics.Raycast(transform.position, Vector3.down, out hit, m_rayDistance);
             if (onSurface)
             {
