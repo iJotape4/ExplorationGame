@@ -7,7 +7,7 @@ namespace PlayerScripts
         [Range(0.1f, 50f)] public float playerSpeed = 10f;
         [Range(0.1f, 100f)] public float jumpForce = 10f;
         Vector2 _horizontalInput;
-        [SerializeField]  bool _onRail;
+        [SerializeField] bool _onRail;
         //[HideInInspector] Vector3 mass;
         [SerializeField] Transform groundCheck;
         [SerializeField] float groundCheckArea = 0.3f;
@@ -20,12 +20,16 @@ namespace PlayerScripts
         [SerializeField] public float rbDrag = 8f;
         [SerializeField] Transform cam;
 
+        private Vector3 m_surfaceNormal = new Vector3();
+        public Transform m_skateboard;
+        public float m_rayDistance = 5f;
+
         Animator anim;
         string paramSpeed = "Velocity";
         string paramJumpTrigger = "Jump";
         string paramRailBool = "OnRail";
 
-        public float turnSmoothTime = 0.1f;
+        public float turnSmoothTime = 0.5f;
         float turnSmoothVelocity;
         public void ReceiveInput(Vector2 moveInput)
         {
@@ -49,15 +53,19 @@ namespace PlayerScripts
         public void Start()
         {
             rb = GetComponent<Rigidbody>();
-            rb.freezeRotation = true;
+            //rb.freezeRotation = true;
             anim = GetComponentInChildren<Animator>();
         }
 
         void Update() =>
             ControlDrag();
 
-        private void FixedUpdate() =>
+        private void FixedUpdate()
+        {
             manageMovement();
+            AlignToSurface();
+            
+        }
 
         void ControlDrag() =>
             rb.drag = rbDrag;
@@ -80,9 +88,13 @@ namespace PlayerScripts
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+              // m_skateboard.transform.rotation = Quaternion.Euler(0f,0f, angle);
 
-                rb.AddForce(moveDir.normalized * playerSpeed * speedMultiplier, ForceMode.Impulse);
+                rb.AddForce(moveDir.normalized * playerSpeed * speedMultiplier);
+                transform.rotation = Quaternion.Euler(transform.rotation.x, angle, transform.rotation.z);
+
+                Debug.DrawRay(transform.position, movement, Color.green);
+                Debug.DrawRay(transform.position, moveDir, Color.yellow);
 
                 //transform.position += moveDir.normalized* playerSpeed*speedMultiplier* Time.deltaTime;
             }
@@ -90,7 +102,7 @@ namespace PlayerScripts
             anim.SetFloat(paramSpeed, movement.magnitude);
         }
 
-        public void MoveAlongRail(Vector3 destination,Vector3 contactPoint)
+        public void MoveAlongRail(Vector3 destination, Vector3 contactPoint)
         {
             _onRail = true;
             anim.SetBool(paramRailBool, true);
@@ -99,7 +111,7 @@ namespace PlayerScripts
         }
 
         public IEnumerator MoveOnRail(Vector3 destination)
-        {         
+        {
             while (Vector3.Distance(transform.position, destination) > 1f && _onRail)
             {
                 transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
@@ -108,6 +120,29 @@ namespace PlayerScripts
             _onRail = false;
             anim.SetBool(paramRailBool, false);
         }
-    }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            m_surfaceNormal = collision.GetContact(0).normal;
+            Debug.DrawRay(m_skateboard.position, m_surfaceNormal, Color.red);
+          
+        }
+
+        void AlignToSurface()
+        {
+            var hit = new RaycastHit();
+            var onSurface = Physics.Raycast(transform.position, Vector3.down, out hit, m_rayDistance);
+            if (onSurface)
+            {
+                var localRot = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+
+                var euler = localRot.eulerAngles;
+                euler.y = 0;
+                localRot.eulerAngles = euler;
+                m_skateboard.localRotation = Quaternion.LerpUnclamped(m_skateboard.localRotation, localRot, 0.1f);
+            }
+        }
+
+    }   
 }
 
