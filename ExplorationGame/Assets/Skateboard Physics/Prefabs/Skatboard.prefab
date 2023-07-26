@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 1599455446165423454}
   - component: {fileID: 1599455446165423449}
   - component: {fileID: 1599455446165423448}
-  - component: {fileID: 1599455446165423453}
   - component: {fileID: 804017770}
   - component: {fileID: 804017762}
   - component: {fileID: 804017763}
@@ -204,25 +203,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &1599455446165423453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599455446165423451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da720f39c5e9d4891b856cc14d364be3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_skateboard: {fileID: 1599455446739365329}
-  m_alignSpeed: 7.5
-  m_rayDistance: 2
-  m_Forward: 0
-  m_Right: 0
-  m_FwdForce: 10
-  m_useRaycast: 1
 --- !u!95 &804017770
 Animator:
   serializedVersion: 5
