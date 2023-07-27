@@ -57,7 +57,7 @@ namespace PlayerScripts
         public void Start()
         {
             rb = GetComponent<Rigidbody>();
-            //rb.freezeRotation = true;
+            rb.freezeRotation = true;
             anim = GetComponentInChildren<Animator>();
         }
 
@@ -67,8 +67,7 @@ namespace PlayerScripts
         private void FixedUpdate()
         {
             manageMovement();
-            AlignToSurface();
-            
+            AlignToSurface();      
         }
 
         void ControlDrag() =>
@@ -77,7 +76,6 @@ namespace PlayerScripts
         void manageMovement()
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
-
             if (_onRail || !isGrounded)
                 return;
 
@@ -106,21 +104,28 @@ namespace PlayerScripts
             anim.SetFloat(paramSpeed, movement.magnitude);
         }
 
-        public void MoveAlongRail(Vector3 destination, Vector3 contactPoint)
+        public void MoveAlongRail(Vector3 destination, Vector3 contactPoint, Vector3 skateRotation)
         {
             _onRail = true;
             anim.SetBool(paramRailBool, true);
-            StartCoroutine(MoveOnRail(destination));
+            rb.isKinematic = true;
+            StartCoroutine(MoveOnRail(destination, skateRotation));
         }
 
-        public IEnumerator MoveOnRail(Vector3 destination)
+        public IEnumerator MoveOnRail(Vector3 destination, Vector3 skateRotation)
         {
+
+            m_skateboard.forward =  -skateRotation;
+
             while (Vector3.Distance(transform.position, destination) > 1f && _onRail)
             {
-                transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
-                yield return new WaitForSeconds(0.001f);
+                m_skateboard.localPosition = Vector3.zero;
+               transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
+               
+                yield return new WaitForSeconds(0.01f);
             }
             _onRail = false;
+            rb.isKinematic = false;
             anim.SetBool(paramRailBool, false);
         }
 
@@ -128,7 +133,7 @@ namespace PlayerScripts
         {
             RaycastHit hit;
             var onSurface = Physics.Raycast(transform.position, Vector3.down, out hit, m_rayDistance);
-            if (onSurface)
+            if (onSurface && isGrounded)
             {
                 var localRot = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
@@ -139,6 +144,7 @@ namespace PlayerScripts
             }
         }
 
+        public bool  GetPlayerIsGrounded() => isGrounded;
     }   
 }
 

@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 804017770}
   - component: {fileID: 804017762}
   - component: {fileID: 804017763}
+  - component: {fileID: 804017776}
   m_Layer: 0
   m_Name: Skatboard
   m_TagString: Untagged
@@ -249,14 +250,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 4
-  jumpForce: 13
+  jumpForce: 15
   turnSmoothTime: 0.5
   speedMultiplier: 10
   rbDrag: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 192
-  groundCheckArea: 0.3
+  groundCheckArea: 0.4
   groundCheck: {fileID: 1599455446739365329}
   m_rayDistance: 5
   cam: {fileID: 100862851}
@@ -265,6 +266,19 @@ MonoBehaviour:
   isGrounded: 0
   inRamp: 0
   _onRail: 0
+--- !u!114 &804017776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599455446165423451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c887a705d9aa0d147a9a18d50e0d5b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceOffset: 3
 --- !u!1 &1599455446739365328
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +310,7 @@ Transform:
   - {fileID: 5102525708786510254}
   m_Father: {fileID: 1599455446165423452}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15.399, z: 0}
 --- !u!1001 &4703281266076274245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,3 +387,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7459505, y: 1.1294551, z: 0.39255822}
   m_Center: {x: 0.00066769123, y: -0.3323648, z: 0.91}
+--- !u!65 &1915980554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585590217705059092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4777832, y: 1.1294551, z: 0.11116409}
+  m_Center: {x: -0.01051724, y: -0.3323648, z: 0.36663818}
