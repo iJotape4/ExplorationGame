@@ -186,7 +186,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.6
   m_Center: {x: -0.32, y: 0, z: 0}
 --- !u!54 &1599455446165423448
 Rigidbody:
@@ -257,7 +257,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 192
-  groundCheckArea: 0.4
+  groundCheckArea: 0.6
   groundCheck: {fileID: 1599455446739365329}
   m_rayDistance: 5
   cam: {fileID: 100862851}
@@ -374,19 +374,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b9abb456fc273fe40a2980f07d64d2f8, type: 3}
   m_PrefabInstance: {fileID: 4703281266076274245}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2591440782726415553
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5585590217705059092}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.7459505, y: 1.1294551, z: 0.39255822}
-  m_Center: {x: 0.00066769123, y: -0.3323648, z: 0.91}
 --- !u!65 &1915980554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -400,3 +387,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4777832, y: 1.1294551, z: 0.11116409}
   m_Center: {x: -0.01051724, y: -0.3323648, z: 0.36663818}
+--- !u!65 &2591440782726415553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585590217705059092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7459505, y: 1.1294551, z: 0.39255822}
+  m_Center: {x: 0.00066769123, y: -0.3323648, z: 0.91}
+--- !u!114 &1618735299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585590217705059092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b933d494b2b3442aeba2f1966bc51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardParent: {fileID: 1599455446739365329}
