@@ -257,7 +257,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 192
-  groundCheckArea: 0.6
+  groundCheckArea: 0.7
   groundCheck: {fileID: 1599455446739365329}
   m_rayDistance: 5
   cam: {fileID: 100862851}
