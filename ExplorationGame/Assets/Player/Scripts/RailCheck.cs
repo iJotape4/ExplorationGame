@@ -40,8 +40,8 @@ namespace PlayerScripts
 
                 Vector3 lane = collision.gameObject.transform.up;
 
-                player.transform.position = new Vector3( contactPoint.x, bc.bounds.max.y, contactPoint.z);
-                player.MoveAlongRail(farthestPoint, contactPoint, lane);
+                player.transform.position = new Vector3( contactPoint.x, player.transform.position.y, contactPoint.z);
+                player.MoveAlongRail(farthestPoint, collision.gameObject.transform.right, lane);
             }
         }
     }

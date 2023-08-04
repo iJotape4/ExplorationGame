@@ -1,5 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using MyBox;
+using DG.Tweening;
+
 namespace PlayerScripts
 {
     public class PlayerMovement : MonoBehaviour
@@ -23,11 +26,8 @@ namespace PlayerScripts
         [SerializeField] Transform cam;
         public Transform m_skateboard;
         [HideInInspector] public Rigidbody rb;
-
-        [Header("Booleans")]
-        [SerializeField] private bool isGrounded;
-        [SerializeField] private bool inRamp;
-        [SerializeField] bool _onRail;
+      
+        [SerializeField, ReadOnly] private bool isGrounded, inRamp, _onRail;
              
         [Header("Animation Params")]
         Animator anim;
