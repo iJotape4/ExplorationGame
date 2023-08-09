@@ -1,14 +1,18 @@
 using UnityEngine;
 
+[ExecuteAlways]
 public class RailDebugger : MonoBehaviour
 {
-    BoxCollider bc;
+    MeshCollider bc;
     Vector3 max, min, center;
     Vector3 minPoint, maxPoint;
+    Vector3 railAngle = Vector3.zero;
+
+    [SerializeField] Transform pointA, pointB, center2;
 
     private void Start()
     {
-        bc = GetComponent<BoxCollider>();      
+        bc = GetComponent<MeshCollider>();
     }
 
     private void Update()
@@ -23,13 +27,22 @@ public class RailDebugger : MonoBehaviour
         minPoint = center + towardsRight;
         maxPoint = center - towardsRight;
 
-        Debug.DrawRay(center, towardsRight, Color.green);    
-        Debug.DrawRay(transform.position, transform.up * 3, Color.cyan);
+        Vector3 perpendicular = Vector3.Cross(towardsRight, transform.up);
+        railAngle = pointB.position - pointA.position;
+        Debug.DrawRay(pointB.position, railAngle*10, Color.black);    
+
+        //Debug.DrawRay(center, towardsRight, Color.green);    
+        Debug.DrawRay(center, transform.up * 3, Color.cyan);
+        Debug.DrawRay(center, transform.right * 3, Color.yellow);
+        Debug.DrawRay(center, transform.forward * 3, Color.blue);
+        //Debug.DrawRay(transform.position, perpendicular * 3, Color.red);
     }
+
+    public Vector3 GetRailInclination() => railAngle;
 
     private void OnDrawGizmos()
     {
-       Gizmos.DrawSphere(maxPoint, 0.5f);
-        Gizmos.DrawSphere(minPoint, 0.5f);
+       /*Gizmos.DrawSphere(maxPoint, 0.5f);
+        Gizmos.DrawSphere(minPoint, 0.5f);*/
     }
 }

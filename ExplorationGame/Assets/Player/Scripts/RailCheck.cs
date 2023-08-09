@@ -18,6 +18,7 @@ namespace PlayerScripts
 
         private void OnCollisionEnter(Collision collision)
         {
+            /*
             if (collision.gameObject.tag == "Rail" && !player.GetPlayerIsGrounded())
             {
                 BoxCollider bc = collision.transform.GetComponent<BoxCollider>();
@@ -41,7 +42,26 @@ namespace PlayerScripts
                 Vector3 lane = collision.gameObject.transform.up;
 
                 player.transform.position = new Vector3( contactPoint.x, player.transform.position.y, contactPoint.z);
-                player.MoveAlongRail(farthestPoint, collision.gameObject.transform.right, lane);
+                Vector3 perpendicular = Vector3.Cross(towardsRight, collision.transform.up);
+                //Debug.DrawRay(transform.position, perpendicular*10, Color.yellow);
+                player.MoveAlongRail(farthestPoint, collision.gameObject.transform.forward, lane);
+            }*/
+
+            if (collision.gameObject.tag == "Rail" && !player.GetPlayerIsGrounded())
+            {
+                Vector3 contactPoint = collision.contacts[0].point;
+                Vector3 playerRotation = player.m_skateboard.transform.forward;
+
+                Rail currentRail = collision.gameObject.GetComponentInParent<Rail>();
+                Vector3 railAngle = currentRail.GetRailInclination();
+                Vector3[] points = currentRail.GetPoints();
+                Vector3 rotationAxis = Vector3.Cross(playerRotation, railAngle);
+                float rotationAngle = Vector3.Angle(playerRotation, currentRail.transform.up.normalized);
+
+                player.transform.position = new Vector3(contactPoint.x, player.transform.position.y, contactPoint.z);
+
+               player.m_skateboard.transform.right = railAngle;
+               player.MoveAlongRail(currentRail.GetTargetPoint(contactPoint), contactPoint, points[0]);
             }
         }
     }

@@ -110,12 +110,13 @@ namespace PlayerScripts
             anim.SetBool(paramRailBool, true);
             rb.isKinematic = true;
             StartCoroutine(MoveOnRail(destination, skateRotation));
+            //m_skateboard.up = contactPoint;
         }
 
         public IEnumerator MoveOnRail(Vector3 destination, Vector3 skateRotation)
         {
 
-            m_skateboard.forward =  -skateRotation;
+           // m_skateboard.forward =  -skateRotation;
 
             while (Vector3.Distance(transform.position, destination) > 1f && _onRail)
             {
