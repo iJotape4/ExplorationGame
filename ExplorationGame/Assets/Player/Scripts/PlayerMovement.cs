@@ -32,8 +32,11 @@ namespace PlayerScripts
         [Header("Animation Params")]
         Animator anim;
         readonly string paramSpeed = "Velocity";
+        readonly string paramJumpStartBool = "JumpStart";
         readonly string paramJumpTrigger = "Jump";
         readonly string paramRailBool = "OnRail";
+        readonly string preJumpAnimName = "Pre jump";
+
         
         public void ReceiveInput(Vector2 moveInput)
         {
@@ -44,7 +47,16 @@ namespace PlayerScripts
         {
             if (isGrounded)
             {
-                anim.SetTrigger(paramJumpTrigger);
+                anim.SetBool(paramJumpStartBool, true);          
+            }
+        }
+
+        public void ReleaseJumpInput()
+        {
+            if (anim.GetBool(paramJumpStartBool))
+            {
+                anim.SetBool(paramJumpTrigger, true);
+                anim.SetBool(paramJumpStartBool, false);
                 StartCoroutine(AddJumpForce());
             }
         }
@@ -83,6 +95,7 @@ namespace PlayerScripts
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
             if (!isGrounded)
             {
+                anim.SetBool(paramJumpStartBool, false);
                 DoTricks();
                 return;
             }   
