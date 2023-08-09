@@ -14,6 +14,7 @@ namespace PlayerScripts
         [HideInInspector] public float rbDrag = 0f;
         float turnSmoothVelocity;
         Vector2 _horizontalInput;
+        [SerializeField, Range(1f, 20f)] float tricksSpeed =10f;
 
         [Header("GroundChecking")]
         [SerializeField] private LayerMask groundMask;
@@ -50,8 +51,10 @@ namespace PlayerScripts
 
         public IEnumerator AddJumpForce()
         {
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
             rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+
+            yield return null;
         }
         public void Start()
         {
@@ -74,10 +77,16 @@ namespace PlayerScripts
 
         void manageMovement()
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
-            if (_onRail || !isGrounded)
+            if(_onRail)
                 return;
 
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckArea, groundMask);
+            if (!isGrounded)
+            {
+                DoTricks();
+                return;
+            }   
+            
             float x = _horizontalInput.x;
             float y = _horizontalInput.y;
 
@@ -139,6 +148,17 @@ namespace PlayerScripts
             }
         }
         public bool  GetPlayerIsGrounded() => isGrounded;
+
+        void DoTricks()
+        {
+            float x = _horizontalInput.x;
+            float y = _horizontalInput.y;
+
+            m_skateboard.Rotate(m_skateboard.transform.up, x*tricksSpeed);
+           //KickFlipRotation
+            //m_skateboard.Rotate(0, 0,  y* tricksSpeed);
+            
+        }
     }   
 }
 
