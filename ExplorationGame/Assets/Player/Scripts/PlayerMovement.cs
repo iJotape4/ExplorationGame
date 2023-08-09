@@ -1,7 +1,6 @@
+using MyBox;
 using System.Collections;
 using UnityEngine;
-using MyBox;
-using DG.Tweening;
 
 namespace PlayerScripts
 {
@@ -100,24 +99,19 @@ namespace PlayerScripts
                 Debug.DrawRay(transform.position, movement, Color.green);
                 Debug.DrawRay(transform.position, moveDir, Color.yellow);
             }
-
             anim.SetFloat(paramSpeed, movement.magnitude);
         }
 
-        public void MoveAlongRail(Vector3 destination, Vector3 contactPoint, Vector3 skateRotation)
+        public void MoveAlongRail(Vector3 destination)
         {
             _onRail = true;
             anim.SetBool(paramRailBool, true);
             rb.isKinematic = true;
-            StartCoroutine(MoveOnRail(destination, skateRotation));
-            //m_skateboard.up = contactPoint;
+            StartCoroutine(MoveOnRail(destination));
         }
 
-        public IEnumerator MoveOnRail(Vector3 destination, Vector3 skateRotation)
+        public IEnumerator MoveOnRail(Vector3 destination)
         {
-
-           // m_skateboard.forward =  -skateRotation;
-
             while (Vector3.Distance(transform.position, destination) > 1f && _onRail)
             {
                 m_skateboard.localPosition = Vector3.zero;
@@ -144,7 +138,6 @@ namespace PlayerScripts
                 m_skateboard.localRotation = Quaternion.LerpUnclamped(m_skateboard.localRotation, localRot, 0.1f);
             }
         }
-
         public bool  GetPlayerIsGrounded() => isGrounded;
     }   
 }
